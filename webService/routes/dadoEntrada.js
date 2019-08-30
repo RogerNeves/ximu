@@ -11,9 +11,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ "extended": false }));
 router.use(middlewareAutenticar);
 
-router.get('/:id', async function (req, res) {
-  let sql = "SELECT * FROM dadosentrada WHERE IdModelos = " + req.params.id;
-  console.log(sql);
+router.get('/', async function (req, res) {
+  let sql
+  if(req.query.id){
+    sql = "SELECT * FROM dadosentrada WHERE id = " + req.query.id;
+  }else if(req.query.IdModelos){
+    sql = "SELECT * FROM dadosentrada WHERE IdModelos = " + req.query.IdModelos;
+  }  
 
   const connection = mysql.createConnection(consMysql);
   await connection.query(sql, async function (error, results) {
@@ -21,6 +25,8 @@ router.get('/:id', async function (req, res) {
       return res.status(304).end();
     }
     let resposta = results;
+    if(req.query.id)
+      resposta = results[0]
     return res.status(200).send(resposta);
   });
 });

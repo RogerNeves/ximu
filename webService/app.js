@@ -14,6 +14,7 @@ const dashboardRouter = require('./routes/dashboard');
 const dadosEntradaRouter = require('./routes/dadoEntrada');
 const tiposDeDadosRouter = require('./routes/tiposDados');
 const medicoesRouter = require('./routes/medicoes');
+const visualizacoesRouter = require('./routes/visualizacao');
 
 const gaugesRouter = require('./routes/gauges');
 const linhasRouter = require('./routes/linhas');
@@ -42,6 +43,7 @@ app.use('/dashboard', dashboardRouter);
 app.use('/dadosEntrada', dadosEntradaRouter);
 app.use('/tiposDados', tiposDeDadosRouter);
 app.use('/medicoes', medicoesRouter);
+app.use('/visualizacoes', visualizacoesRouter);
 
 app.use('/gauges', gaugesRouter);
 app.use('/linhas', linhasRouter);

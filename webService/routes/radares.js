@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ "extended": false }));
 router.use(middlewareAutenticar);
 
-router.get('/:idDashboard', async function(req,res){
-    let slq = "SELECT * FROM radares WHERE idDashboards = "+req.params.mqtt.idDashboard;
+router.get('/:idVisualizacao', async function(req,res){
+    let sql = "SELECT * FROM radares WHERE idVisualizacao = "+req.params.idVisualizacao;
     
     const connection = mysql.createConnection(consMysql);
 	await connection.query(sql, async function(error, results){
